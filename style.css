@@ -1,96 +1,139 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Orbitron&display=swap');
-
 :root {
-    --primary-color: #f0e6d2;
-    --secondary-color: #a89f89;
-    --background-color: #1a1a1a;
-    --text-color: #e0e0e0;
-    --card-background: #2a2a2a;
-    --glow-color: rgba(240, 230, 210, 0.4);
+    --bg-start: #fdfbfb;
+    --bg-end: #ebedee;
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --text-main: #34495e;
+    --text-muted: #7f8c8d;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Nanum Myeongjo', serif;
-    background-color: var(--background-color);
-    background-image: subtle-noise-texture.png;
-    color: var(--text-color);
+    font-family: 'Noto Sans KR', sans-serif;
+    background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    color: var(--text-main);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
+    overflow-x: hidden;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: -1;
 }
 
 .container {
-    background-color: var(--card-background);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--glow-color);
-    text-align: center;
-    max-width: 500px;
+    max-width: 800px;
     width: 90%;
-}
-
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary-color);
-    font-size: 2.5rem;
-    text-shadow: 0 0 10px var(--glow-color);
-}
-
-.input-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 30px 0;
-}
-
-input[type="number"] {
-    font-family: 'Orbitron', sans-serif;
-    width: 70px;
-    padding: 10px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 8px;
-    background-color: var(--background-color);
-    color: var(--primary-color);
-    font-size: 0.9rem;
     text-align: center;
+    padding: 40px 20px;
+    z-index: 1;
 }
 
-button {
-    font-family: 'Orbitron', sans-serif;
-    background-color: var(--primary-color);
-    color: var(--background-color);
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+header .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1rem;
+    margin-bottom: 50px;
+}
+
+.quote-card {
+    background: var(--card-bg);
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(5px);
+    position: relative;
+}
+
+.quote-card:hover {
+    transform: translateY(-5px);
+}
+
+#quote-container {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#quote {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+    word-break: keep-all;
+    animation: fadeIn 0.8s ease-out;
+}
+
+#author {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    font-weight: 500;
+    display: block;
+    margin-top: 10px;
+    animation: fadeIn 1.2s ease-out;
+}
+
+.actions {
+    margin-top: 40px;
+}
+
+#new-quote-btn {
+    background: var(--primary-color);
+    color: white;
     border: none;
-    padding: 15px 30px;
-    border-radius: 8px;
-    font-size: 1.2rem;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px var(--glow-color);
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
 }
 
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px var(--glow-color);
+#new-quote-btn:hover {
+    background: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
 }
 
-#fortune-result-container {
-    margin-top: 30px;
-}
-
-fortune-result {
-    display: block;
-    background-color: var(--background-color);
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid var(--secondary-color);
-    margin-top: 20px;
-    animation: fadeIn 1s ease-in-out;
+footer {
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
 }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 2rem; }
+    #quote { font-size: 1.4rem; }
 }

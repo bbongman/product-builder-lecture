@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>개인 사주 사이트</title>
+    <title>Daily Motivation - 당신의 하루를 응원합니다</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>당신의 사주를 알려드립니다</h1>
-        <p>생년월일과 태어난 시간을 입력하시면 상세한 사주 분석을 해드립니다.</p>
-        <div class="input-group">
-            <input type="number" id="year" placeholder="년(YYYY)" min="1900" max="2025">
-            <input type="number" id="month" placeholder="월" min="1" max="12">
-            <input type="number" id="day" placeholder="일" min="1" max="31">
-            <input type="number" id="hour" placeholder="시(0-23)" min="0" max="23">
-        </div>
-        <button id="get-fortune">운세 보기</button>
-        <div id="fortune-result-container"></div>
-    </div>
+    <div class="background-overlay"></div>
+    <main class="container">
+        <header>
+            <h1>오늘의 동기부여</h1>
+            <p class="subtitle">매 순간 당신의 도전을 응원합니다</p>
+        </header>
+        
+        <section class="quote-card">
+            <div id="quote-container">
+                <blockquote id="quote">"포기하지 마세요. 시작은 언제나 힘든 법입니다."</blockquote>
+                <cite id="author">- 익명</cite>
+            </div>
+            <div class="actions">
+                <button id="new-quote-btn">새로운 영감 얻기</button>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Daily Motivation. All rights reserved.</p>
+        </footer>
+    </main>
     <script src="main.js"></script>
 </body>
 </html>

@@ -1,104 +1,95 @@
-class FortuneResult extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
+const quotes = [
+    {
+        text: "가장 큰 위험은 아무런 위험도 감수하지 않는 것이다.",
+        author: "마크 저커버그"
+    },
+    {
+        text: "성공은 최종적인 것이 아니며, 실패는 치명적인 것이 아니다. 중요한 것은 계속 나아가는 용기다.",
+        author: "윈스턴 처칠"
+    },
+    {
+        text: "당신이 할 수 있다고 믿든 할 수 없다고 믿든, 당신이 믿는 대로 될 것이다.",
+        author: "헨리 포드"
+    },
+    {
+        text: "어제와 똑같은 삶을 살면서 다른 미래를 기대하는 것은 정신병 초기 증세이다.",
+        author: "알베르트 아인슈타인"
+    },
+    {
+        text: "시작하기 위해 위대해질 필요는 없지만, 위대해지기 위해 시작해야 한다.",
+        author: "지그 지글러"
+    },
+    {
+        text: "나만이 내 인생을 바꿀 수 있다. 아무도 날 대신해 해줄 수 없다.",
+        author: "캐롤 버넷"
+    },
+    {
+        text: "꿈을 이룰 수 있는 가장 좋은 방법은 깨어있는 것이다.",
+        author: "폴 발레리"
+    },
+    {
+        text: "성공은 매일 반복되는 작은 노력들의 합계다.",
+        author: "로버트 콜리어"
+    },
+    {
+        text: "우리가 두려워해야 할 유일한 것은 두려움 그 자체다.",
+        author: "프랭클린 D. 루스벨트"
+    },
+    {
+        text: "오늘 할 수 있는 일을 내일로 미루지 마라.",
+        author: "벤자민 프랭클린"
+    },
+    {
+        text: "인생에서 가장 큰 영광은 결코 넘어지지 않는 데 있는 것이 아니라, 넘어질 때마다 다시 일어나는 데 있다.",
+        author: "넬슨 만델라"
+    },
+    {
+        text: "길을 찾거나, 아니면 만들어라.",
+        author: "한니발 바르카"
+    },
+    {
+        text: "미래를 예측하는 가장 좋은 방법은 미래를 창조하는 것이다.",
+        author: "피터 드러커"
+    },
+    {
+        text: "실패는 성공을 향한 디딤돌일 뿐이다.",
+        author: "에이브러햄 링컨"
+    },
+    {
+        text: "천재는 1%의 영감과 99%의 노력으로 이루어진다.",
+        author: "토마스 에디슨"
     }
+];
 
-    connectedCallback() {
-        this.render();
-    }
-
-    static get observedAttributes() {
-        return ['text'];
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'text' && oldValue !== newValue) {
-            this.render();
-        }
-    }
-
-    render() {
-        const text = this.getAttribute('text') || '';
-        this.shadowRoot.innerHTML = `
-            <style>
-                .fortune-content {
-                    font-size: 1.1rem;
-                    line-height: 1.8;
-                    white-space: pre-wrap;
-                    text-align: left;
-                    padding: 10px;
-                    color: var(--text-color, #e0e0e0);
-                }
-            </style>
-            <div class="fortune-content">${text}</div>
-        `;
-    }
+function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
 }
 
-if (!customElements.get('fortune-result')) {
-    customElements.define('fortune-result', FortuneResult);
+function displayQuote() {
+    const quoteElement = document.getElementById('quote');
+    const authorElement = document.getElementById('author');
+    const quoteContainer = document.getElementById('quote-container');
+
+    // 애니메이션 초기화 (새로 적용하기 위해 요소를 잠시 숨겼다 보여줌)
+    quoteElement.style.animation = 'none';
+    authorElement.style.animation = 'none';
+    
+    // 강제 리플로우 (브라우저가 스타일 변화를 즉시 인지하게 함)
+    void quoteElement.offsetWidth;
+    void authorElement.offsetWidth;
+
+    const { text, author } = getRandomQuote();
+    
+    quoteElement.textContent = `"${text}"`;
+    authorElement.textContent = `- ${author}`;
+
+    // 애니메이션 다시 적용
+    quoteElement.style.animation = 'fadeIn 0.8s ease-out';
+    authorElement.style.animation = 'fadeIn 1.2s ease-out';
 }
 
-document.getElementById('get-fortune').addEventListener('click', () => {
-    const year = document.getElementById('year').value;
-    const month = document.getElementById('month').value;
-    const day = document.getElementById('day').value;
-    const hour = document.getElementById('hour').value;
+document.getElementById('new-quote-btn').addEventListener('click', displayQuote);
 
-    if (!year || !month || !day || hour === "") {
-        alert('생년월일과 태어난 시간을 모두 입력해주세요.');
-        return;
-    }
-
-    const heavenlyStems = ["갑(甲)", "을(乙)", "병(丙)", "정(丁)", "무(戊)", "기(己)", "경(庚)", "신(辛)", "임(壬)", "계(癸)"];
-    const earthlyBranches = ["자(子)", "축(丑)", "인(寅)", "묘(卯)", "진(辰)", "사(巳)", "오(午)", "미(未)", "신(申)", "유(酉)", "술(술)", "해(亥)"];
-
-    const getPillar = (val1, val2) => {
-        const stemIndex = Math.abs(val1) % 10;
-        const branchIndex = Math.abs(val2) % 12;
-        return heavenlyStems[stemIndex] + earthlyBranches[branchIndex];
-    };
-
-    const yearInt = parseInt(year);
-    const monthInt = parseInt(month);
-    const dayInt = parseInt(day);
-    const hourInt = parseInt(hour);
-
-    const yearPillar = getPillar(yearInt, yearInt + 8);
-    const monthPillar = getPillar(yearInt + monthInt, monthInt + 2);
-    const dayPillar = getPillar(monthInt + dayInt, dayInt + 6);
-    const hourPillar = getPillar(dayInt + hourInt, hourInt + 4);
-
-    const fortunes = [
-        "강인한 생명력과 추진력을 가진 사주입니다. 리더의 자질이 돋보입니다.",
-        "예술적 감각이 뛰어나고 섬세한 성품을 지녔습니다. 창의적인 일에 적합합니다.",
-        "따뜻한 포용력과 인덕이 있는 사주입니다. 주변 사람들의 도움을 많이 받게 됩니다.",
-        "냉철한 판단력과 논리적인 사고를 가졌습니다. 전문직 분야에서 대성할 운입니다.",
-        "흙처럼 단단하고 믿음직한 성격입니다. 재물운이 안정적으로 흐르는 사주입니다.",
-        "물처럼 유연하고 지혜로운 처세술을 가졌습니다. 어떤 환경에서도 잘 적응합니다.",
-        "불처럼 정열적이고 활동적인 에너지가 넘칩니다. 변화를 주도하는 삶을 살게 됩니다.",
-        "보석처럼 빛나는 재능과 품격을 갖췄습니다. 명예운이 매우 높은 사주입니다.",
-        "거목처럼 든든한 버팀목이 되어주는 성품입니다. 사회적으로 큰 기여를 하게 됩니다.",
-        "끝없는 호기심과 탐구심이 강한 사주입니다. 끊임없이 배우고 성장하는 운세입니다."
-    ];
-
-    const fortuneIndex = Math.abs(yearInt + monthInt + dayInt + hourInt) % fortunes.length;
-    const resultText = `
-[ 사주 분석 결과 ]
-
-년주(年柱): ${yearPillar}
-월주(月柱): ${monthPillar}
-일주(日柱): ${dayPillar}
-시주(時柱): ${hourPillar}
-
-분석 내용:
-${fortunes[fortuneIndex]}
-    `;
-
-    const container = document.getElementById('fortune-result-container');
-    container.innerHTML = ''; 
-    const fortuneElement = document.createElement('fortune-result');
-    fortuneElement.setAttribute('text', resultText);
-    container.appendChild(fortuneElement);
-});
+// 페이지 로드 시 첫 명언 표시
+window.addEventListener('DOMContentLoaded', displayQuote);
