@@ -9,11 +9,12 @@
 <body>
     <div class="container">
         <h1>당신의 사주를 알려드립니다</h1>
-        <p>생년월일을 입력하시면 오늘의 운세를 알려드립니다.</p>
+        <p>생년월일과 태어난 시간을 입력하시면 상세한 사주 분석을 해드립니다.</p>
         <div class="input-group">
-            <input type="number" id="year" placeholder="년 (YYYY)" min="1900" max="2024">
+            <input type="number" id="year" placeholder="년(YYYY)" min="1900" max="2025">
             <input type="number" id="month" placeholder="월" min="1" max="12">
             <input type="number" id="day" placeholder="일" min="1" max="31">
+            <input type="number" id="hour" placeholder="시(0-23)" min="0" max="23">
         </div>
         <button id="get-fortune">운세 보기</button>
         <div id="fortune-result-container"></div>

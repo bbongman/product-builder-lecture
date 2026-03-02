@@ -48,13 +48,13 @@ h1 {
 
 input[type="number"] {
     font-family: 'Orbitron', sans-serif;
-    width: 80px;
+    width: 70px;
     padding: 10px;
     border: 1px solid var(--secondary-color);
     border-radius: 8px;
     background-color: var(--background-color);
     color: var(--primary-color);
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-align: center;
 }
 

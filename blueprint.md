@@ -1,32 +1,20 @@
+# Project Overview
+이 프로젝트는 사용자의 생년월일과 태어난 시간을 입력받아 사주(사주팔자)를 분석해주는 웹 애플리케이션입니다.
 
-# **Blueprint for the Personal Fortune-Telling Website**
+# Detailed Outline
+## Features
+- **생년월일 및 태어난 시간 입력**: 사용자가 태어난 년, 월, 일, 시를 입력할 수 있는 필드를 제공합니다.
+- **사주 분석 엔진**: 입력된 정보를 바탕으로 년주, 월주, 일주, 시주를 계산하고(시뮬레이션), 이에 따른 운세 분석 결과를 제공합니다.
+- **Web Component 기반 UI**: `fortune-result` 커스텀 엘리먼트를 사용하여 결과를 깔끔하게 표시합니다.
+- **Modern CSS**: Baseline 기능을 활용한 반응형 디자인과 애니메이션 효과를 적용했습니다.
 
-## **Overview**
+## Design
+- **테마**: 동양적 신비로움을 강조하기 위해 어두운 배경에 금색/베이지색 포인트를 준 디자인입니다.
+- **폰트**: 'Nanum Myeongjo' (세리프)와 'Orbitron' (현대적 숫자)을 혼용하여 전통과 현대의 조화를 꾀했습니다.
+- **효과**: 은은한 글로우 효과와 페이드인 애니메이션을 통해 프리미엄한 느낌을 전달합니다.
 
-This document outlines the plan for creating a personal fortune-telling website. The application will allow users to input their birth date and receive a personalized fortune based on it.
-
-## **Design and Features**
-
-*   **Modern and Visually Appealing Design:** The website will have a clean and modern user interface with a dark theme, custom fonts, and well-structured layout.
-*   **Interactive Fortune-Telling:** Users can enter their birth date through an intuitive form. A button click will trigger the fortune-telling process.
-*   **Dynamic Results Display:** The calculated fortune will be displayed dynamically on the page without requiring a reload.
-*   **Web Components:** A custom HTML element will be created for displaying the fortune result, encapsulating its structure, style, and behavior.
-*   **Mobile-Responsive:** The layout will be responsive and adapt to different screen sizes.
-
-## **Current Plan**
-
-1.  **Create the HTML Structure (`index.html`):**
-    *   Set up the main page with a title, input fields for the birth date (year, month, day), a "Tell My Fortune" button, and a container for the results.
-
-2.  **Style the Website (`style.css`):**
-    *   Apply a dark theme with a professional color palette.
-    *   Use modern CSS for layout, including CSS variables for theming.
-    *   Ensure the design is responsive and looks great on all devices.
-
-3.  **Implement the Fortune-Telling Logic (`main.js`):**
-    *   Create a custom web component, `<fortune-result>`, to display the user's fortune.
-    *   Add an event listener to the "Tell My Fortune" button.
-    *   When the button is clicked:
-        *   Retrieve the user's birth date from the input fields.
-        *   Perform a simple calculation to determine a fortune (for demonstration purposes).
-        *   Create an instance of the `<fortune-result>` component with the calculated fortune and display it.
+# Current Implementation Steps
+1. **입력 필드 확장**: 기존의 년, 월, 일 입력란에 '태어난 시' 입력란을 추가했습니다.
+2. **사주 로직 강화**: 입력된 시각까지 포함하여 천간(Heavenly Stems)과 지지(Earthly Branches)를 조합한 사주 분석 결과가 출력되도록 수정했습니다.
+3. **UI/UX 개선**: 결과창에서 여러 줄의 텍스트가 올바르게 표시되도록 스타일을 조정하고, 입력 필드의 레이아웃을 최적화했습니다.
+4. **Git 배포**: 최신 코드를 GitHub 저장소에 푸시하여 배포를 완료했습니다.
