@@ -1,29 +1,44 @@
 class FortuneResult extends HTMLElement {
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
+    }
 
-        const style = document.createElement('style');
-        style.textContent = `
-            .fortune-content {
-                font-size: 1.1rem;
-                line-height: 1.8;
-                white-space: pre-wrap;
-                text-align: left;
-                padding: 10px;
-            }
+    connectedCallback() {
+        this.render();
+    }
+
+    static get observedAttributes() {
+        return ['text'];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'text' && oldValue !== newValue) {
+            this.render();
+        }
+    }
+
+    render() {
+        const text = this.getAttribute('text') || '';
+        this.shadowRoot.innerHTML = `
+            <style>
+                .fortune-content {
+                    font-size: 1.1rem;
+                    line-height: 1.8;
+                    white-space: pre-wrap;
+                    text-align: left;
+                    padding: 10px;
+                    color: var(--text-color, #e0e0e0);
+                }
+            </style>
+            <div class="fortune-content">${text}</div>
         `;
-
-        const content = document.createElement('div');
-        content.setAttribute('class', 'fortune-content');
-        content.textContent = this.getAttribute('text');
-
-        shadow.appendChild(style);
-        shadow.appendChild(content);
     }
 }
 
-customElements.define('fortune-result', FortuneResult);
+if (!customElements.get('fortune-result')) {
+    customElements.define('fortune-result', FortuneResult);
+}
 
 document.getElementById('get-fortune').addEventListener('click', () => {
     const year = document.getElementById('year').value;
@@ -39,12 +54,21 @@ document.getElementById('get-fortune').addEventListener('click', () => {
     const heavenlyStems = ["갑(甲)", "을(乙)", "병(丙)", "정(丁)", "무(戊)", "기(己)", "경(庚)", "신(辛)", "임(壬)", "계(癸)"];
     const earthlyBranches = ["자(子)", "축(丑)", "인(寅)", "묘(卯)", "진(辰)", "사(巳)", "오(午)", "미(未)", "신(申)", "유(酉)", "술(술)", "해(亥)"];
 
-    const getPillar = (val1, val2) => heavenlyStems[val1 % 10] + earthlyBranches[val2 % 12];
+    const getPillar = (val1, val2) => {
+        const stemIndex = Math.abs(val1) % 10;
+        const branchIndex = Math.abs(val2) % 12;
+        return heavenlyStems[stemIndex] + earthlyBranches[branchIndex];
+    };
 
-    const yearPillar = getPillar(parseInt(year), parseInt(year) + 8);
-    const monthPillar = getPillar(parseInt(year) + parseInt(month), parseInt(month) + 2);
-    const dayPillar = getPillar(parseInt(month) + parseInt(day), parseInt(day) + 6);
-    const hourPillar = getPillar(parseInt(day) + parseInt(hour), parseInt(hour) + 4);
+    const yearInt = parseInt(year);
+    const monthInt = parseInt(month);
+    const dayInt = parseInt(day);
+    const hourInt = parseInt(hour);
+
+    const yearPillar = getPillar(yearInt, yearInt + 8);
+    const monthPillar = getPillar(yearInt + monthInt, monthInt + 2);
+    const dayPillar = getPillar(monthInt + dayInt, dayInt + 6);
+    const hourPillar = getPillar(dayInt + hourInt, hourInt + 4);
 
     const fortunes = [
         "강인한 생명력과 추진력을 가진 사주입니다. 리더의 자질이 돋보입니다.",
@@ -59,13 +83,17 @@ document.getElementById('get-fortune').addEventListener('click', () => {
         "끝없는 호기심과 탐구심이 강한 사주입니다. 끊임없이 배우고 성장하는 운세입니다."
     ];
 
-    const fortuneIndex = (parseInt(year) + parseInt(month) + parseInt(day) + parseInt(hour)) % fortunes.length;
+    const fortuneIndex = Math.abs(yearInt + monthInt + dayInt + hourInt) % fortunes.length;
     const resultText = `
-        [사주 분석 결과]
-        년주: ${yearPillar} / 월주: ${monthPillar}
-        일주: ${dayPillar} / 시주: ${hourPillar}
-        
-        분석: ${fortunes[fortuneIndex]}
+[ 사주 분석 결과 ]
+
+년주(年柱): ${yearPillar}
+월주(月柱): ${monthPillar}
+일주(日柱): ${dayPillar}
+시주(時柱): ${hourPillar}
+
+분석 내용:
+${fortunes[fortuneIndex]}
     `;
 
     const container = document.getElementById('fortune-result-container');
