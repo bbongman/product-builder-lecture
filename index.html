@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Motivation - 당신의 하루를 응원합니다</title>
+    <title>Daily Motivation - 매일 당신의 하루를 응원하는 동기부여</title>
+    <meta name="description" content="매일 새로운 동기부여 명언과 영감을 통해 긍정적인 하루를 시작하세요. 성공, 도전, 힐링을 위한 메시지를 제공합니다.">
     <meta name="google-adsense-account" content="ca-pub-9754167781174678">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9754167781174678"
      crossorigin="anonymous"></script>
@@ -12,13 +13,25 @@
 </head>
 <body>
     <div class="background-overlay"></div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Daily Motivation</a>
+            <ul class="nav-links">
+                <li><a href="#about">서비스 소개</a></li>
+                <li><a href="#inspiration">오늘의 영감</a></li>
+                <li><a href="#contact">제휴 문의</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <main class="container">
         <header>
             <h1>오늘의 동기부여</h1>
             <p class="subtitle">매 순간 당신의 도전을 응원합니다</p>
         </header>
         
-        <section class="quote-card">
+        <section id="inspiration" class="quote-card">
             <div id="quote-container">
                 <blockquote id="quote">"포기하지 마세요. 시작은 언제나 힘든 법입니다."</blockquote>
                 <cite id="author">- 익명</cite>
@@ -28,7 +41,25 @@
             </div>
         </section>
 
-        <section class="form-container">
+        <!-- 광고 영역 Placeholder (애드센스 승인 후 자동 배치 예정) -->
+        <div class="ad-placeholder">
+            <p>Advertisement</p>
+        </div>
+
+        <section id="about" class="intro-section">
+            <div class="intro-card">
+                <h2>Daily Motivation이란?</h2>
+                <p>우리는 매일 수많은 도전에 직면합니다. 때로는 지치고 포기하고 싶은 순간도 찾아옵니다. <strong>Daily Motivation</strong>은 그런 순간 당신의 곁에서 작은 힘이 되어드리고자 탄생했습니다.</p>
+                <p>성공한 리더들의 지혜부터 마음을 울리는 따뜻한 위로까지, 엄선된 문장들을 통해 여러분의 잠재력을 깨워보세요.</p>
+                <ul class="feature-list">
+                    <li>✨ 엄선된 글로벌 명언 데이터베이스</li>
+                    <li>🌱 마음의 안정을 주는 미니멀 디자인</li>
+                    <li>🚀 매일 업데이트되는 새로운 영감</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="form-container">
             <div class="form-card">
                 <h2>제휴 및 협업 문의</h2>
                 <p class="form-desc">함께 성장해나갈 파트너를 기다립니다. 아래 양식을 작성해 주세요.</p>
@@ -61,8 +92,15 @@
             </div>
         </section>
 
-        <footer>
-            <p>&copy; 2026 Daily Motivation. All rights reserved.</p>
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>&copy; 2026 Daily Motivation. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy.html">개인정보처리방침</a>
+                    <a href="terms.html">이용약관</a>
+                    <a href="#about">회사소개</a>
+                </div>
+            </div>
         </footer>
     </main>
     <script src="main.js"></script>

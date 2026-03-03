@@ -1,108 +1,70 @@
 const quotes = [
-    {
-        text: "가장 큰 위험은 아무런 위험도 감수하지 않는 것이다.",
-        author: "마크 저커버그"
-    },
-    {
-        text: "성공은 최종적인 것이 아니며, 실패는 치명적인 것이 아니다. 중요한 것은 계속 나아가는 용기다.",
-        author: "윈스턴 처칠"
-    },
-    {
-        text: "당신이 할 수 있다고 믿든 할 수 없다고 믿든, 당신이 믿는 대로 될 것이다.",
-        author: "헨리 포드"
-    },
-    {
-        text: "어제와 똑같은 삶을 살면서 다른 미래를 기대하는 것은 정신병 초기 증세이다.",
-        author: "알베르트 아인슈타인"
-    },
-    {
-        text: "시작하기 위해 위대해질 필요는 없지만, 위대해지기 위해 시작해야 한다.",
-        author: "지그 지글러"
-    },
-    {
-        text: "나만이 내 인생을 바꿀 수 있다. 아무도 날 대신해 해줄 수 없다.",
-        author: "캐롤 버넷"
-    },
-    {
-        text: "꿈을 이룰 수 있는 가장 좋은 방법은 깨어있는 것이다.",
-        author: "폴 발레리"
-    },
-    {
-        text: "성공은 매일 반복되는 작은 노력들의 합계다.",
-        author: "로버트 콜리어"
-    },
-    {
-        text: "우리가 두려워해야 할 유일한 것은 두려움 그 자체다.",
-        author: "프랭클린 D. 루스벨트"
-    },
-    {
-        text: "오늘 할 수 있는 일을 내일로 미루지 마라.",
-        author: "벤자민 프랭클린"
-    },
-    {
-        text: "인생에서 가장 큰 영광은 결코 넘어지지 않는 데 있는 것이 아니라, 넘어질 때마다 다시 일어나는 데 있다.",
-        author: "넬슨 만델라"
-    },
-    {
-        text: "길을 찾거나, 아니면 만들어라.",
-        author: "한니발 바르카"
-    },
-    {
-        text: "미래를 예측하는 가장 좋은 방법은 미래를 창조하는 것이다.",
-        author: "피터 드러커"
-    },
-    {
-        text: "실패는 성공을 향한 디딤돌일 뿐이다.",
-        author: "에이브러햄 링컨"
-    },
-    {
-        text: "천재는 1%의 영감과 99%의 노력으로 이루어진다.",
-        author: "토마스 에디슨"
-    }
+    { text: "포기하지 마세요. 시작은 언제나 힘든 법입니다.", author: "익명" },
+    { text: "성공은 최종적인 것이 아니며, 실패는 치명적인 것이 아니다. 중요한 것은 지속하는 용기다.", author: "윈스턴 처칠" },
+    { text: "당신이 할 수 있다고 믿든 할 수 없다고 믿든, 당신이 믿는 대로 될 것이다.", author: "헨리 포드" },
+    { text: "어제와 똑같이 살면서 다른 미래를 기대하는 것은 정신병 초기 증세이다.", author: "알베르트 아인슈타인" },
+    { text: "가장 큰 위험은 아무런 위험도 감수하지 않는 것이다.", author: "마크 저커버그" },
+    { text: "기회는 일어나는 것이 아니라 만드는 것이다.", author: "크리스 그로서" },
+    { text: "꿈을 이루기에 너무 늦은 나이란 없다.", author: "에드워드 알비" },
+    { text: "실패는 성공으로 가는 과정일 뿐이다.", author: "익명" },
+    { text: "오늘 걷지 않으면 내일은 뛰어야 한다.", author: "익명" },
+    { text: "가장 높은 곳에 올라가려면 가장 낮은 곳부터 시작하라.", author: "푸블릴리우스 시루스" },
+    { text: "자신을 믿는 순간, 어떻게 살아야 할지 알게 된다.", author: "괴테" },
+    { text: "위대한 일을 해내는 유일한 방법은 당신이 하는 일을 사랑하는 것이다.", author: "스티브 잡스" }
 ];
 
+const quoteText = document.getElementById('quote');
+const authorText = document.getElementById('author');
+const newQuoteBtn = document.getElementById('new-quote-btn');
+
 function getRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    return quotes[randomIndex];
+    // 현재 명언을 제외하고 랜덤하게 선택하기 위한 로직
+    const currentQuote = quoteText.innerText;
+    let availableQuotes = quotes.filter(q => `"${q.text}"` !== currentQuote);
+    
+    const randomIndex = Math.floor(Math.random() * availableQuotes.length);
+    const selected = availableQuotes[randomIndex];
+
+    // 페이드 효과를 위한 클래스 처리
+    quoteText.style.opacity = 0;
+    authorText.style.opacity = 0;
+
+    setTimeout(() => {
+        quoteText.innerText = `"${selected.text}"`;
+        authorText.innerText = `- ${selected.author}`;
+        quoteText.style.opacity = 1;
+        authorText.style.opacity = 1;
+    }, 300);
 }
 
-function displayQuote() {
-    const quoteElement = document.getElementById('quote');
-    const authorElement = document.getElementById('author');
-    const quoteContainer = document.getElementById('quote-container');
-
-    // 애니메이션 초기화 (새로 적용하기 위해 요소를 잠시 숨겼다 보여줌)
-    quoteElement.style.animation = 'none';
-    authorElement.style.animation = 'none';
+// 초기 로딩 시 랜덤 명언 설정
+window.addEventListener('DOMContentLoaded', () => {
+    getRandomQuote();
     
-    // 강제 리플로우 (브라우저가 스타일 변화를 즉시 인지하게 함)
-    void quoteElement.offsetWidth;
-    void authorElement.offsetWidth;
+    // Smooth Scroll for Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80, // Navbar height compensation
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
 
-    const { text, author } = getRandomQuote();
-    
-    quoteElement.textContent = `"${text}"`;
-    authorElement.textContent = `- ${author}`;
+newQuoteBtn.addEventListener('click', getRandomQuote);
 
-    // 애니메이션 다시 적용
-    quoteElement.style.animation = 'fadeIn 0.8s ease-out';
-    authorElement.style.animation = 'fadeIn 1.2s ease-out';
-}
-
-document.getElementById('new-quote-btn').addEventListener('click', displayQuote);
-
-// 페이지 로드 시 첫 명언 표시
-window.addEventListener('DOMContentLoaded', displayQuote);
-
-// Form submission feedback
+// Form Submission handling (간단한 피드백)
 const form = document.getElementById('partnership-form');
 if (form) {
-    form.addEventListener('submit', function() {
-        const submitBtn = form.querySelector('.submit-btn');
-        submitBtn.disabled = true;
-        submitBtn.textContent = '보내는 중...';
-        submitBtn.style.opacity = '0.7';
-        submitBtn.style.cursor = 'not-allowed';
+    form.addEventListener('submit', () => {
+        // Formspree가 처리하므로 전송 전 로직만 간단히
+        const btn = form.querySelector('.submit-btn');
+        btn.innerText = '전송 중...';
+        btn.disabled = true;
     });
 }
-
