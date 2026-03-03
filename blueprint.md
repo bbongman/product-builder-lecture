@@ -9,22 +9,28 @@
 3. **Responsive Design:** Optimized for both desktop and mobile viewing.
 4. **Modern UI/UX:** Uses glassmorphism effects, smooth transitions, and a perceptually uniform color palette.
 5. **Partnership Inquiry Form (New):** Allows users to send partnership inquiries directly through a form powered by Formspree.
+6. **Monetization (New):** Integrated Google AdSense for sustainable operations.
 
 ## **Technical Implementation**
 - **HTML5:** Semantic structure with custom web components (planned).
 - **CSS3:** Modern features like CSS Variables, Flexbox, and animations.
 - **JavaScript (ES Modules):** Clean, modular logic for quote generation and UI interactions.
 - **Formspree:** Backend-less form handling for partnership inquiries.
+- **Google AdSense:** Integrated verification meta tags and script.
 
-## **Current Task: Partnership Inquiry Form**
-**Goal:** Implement a visually appealing and functional partnership inquiry form.
+## **Current Task: AdSense & Form Integration**
+**Goal:** Finalize monetization setup and partnership form.
 
 ### **Steps:**
 1. **HTML Structure:** Add a new `<section>` for the contact form in `index.html`. Include fields for Name, Email, Subject, and Message.
 2. **Styling:** Update `style.css` to style the form consistently with the "Daily Motivation" theme. Use cards, soft shadows, and clear typography.
 3. **Formspree Integration:** Set the form's `action` to `https://formspree.io/f/xojnokkp` and `method` to `POST`.
-4. **Validation & UX:** Add simple client-side validation and ensure the form is responsive.
-5. **Success Handling:** Configure Formspree to handle the submission and provide feedback.
+4. **Google AdSense Setup:** 
+    - Added the verification script to `<head>`.
+    - Added the `google-adsense-account` meta tag.
+    - Created `ads.txt` in the root directory for site ownership verification.
+5. **Validation & UX:** Add simple client-side validation and ensure the form is responsive.
+6. **Success Handling:** Configure Formspree to handle the submission and provide feedback.
 
 ## **Deployment Phase**
 **Goal:** Deploy the Daily Motivation application to Cloudflare Pages for public access.
