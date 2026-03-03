@@ -93,3 +93,16 @@ document.getElementById('new-quote-btn').addEventListener('click', displayQuote)
 
 // 페이지 로드 시 첫 명언 표시
 window.addEventListener('DOMContentLoaded', displayQuote);
+
+// Form submission feedback
+const form = document.getElementById('partnership-form');
+if (form) {
+    form.addEventListener('submit', function() {
+        const submitBtn = form.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = '보내는 중...';
+        submitBtn.style.opacity = '0.7';
+        submitBtn.style.cursor = 'not-allowed';
+    });
+}
+

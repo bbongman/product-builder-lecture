@@ -1,20 +1,42 @@
-# Project Overview
-이 프로젝트는 사용자에게 매번 새로운 동기부여 명언을 제공하여 긍정적인 에너지를 전달하는 "Daily Motivation" 웹 서비스입니다.
+# **Daily Motivation Application Blueprint**
 
-# Detailed Outline
-## Features
-- **랜덤 명언 생성**: 페이지를 새로고침하거나 버튼을 클릭할 때마다 엄선된 동기부여 명언 중 하나를 랜덤하게 보여줍니다.
-- **세련된 타이포그래피**: 명언의 울림을 극대화할 수 있도록 강조된 폰트 스타일을 적용했습니다.
-- **공유 기능**: 마음에 드는 명언을 복사하거나 영감을 얻을 수 있는 심플한 인터페이스를 제공합니다.
-- **반응형 디자인**: 모바일과 데스크탑 어디서든 편하게 명언을 감상할 수 있습니다.
+## **Project Overview**
+"Daily Motivation" is a simple web application designed to provide users with daily inspiration and encouragement. It features a clean, modern aesthetic with a focus on typography and subtle visual effects.
 
-## Design
-- **테마**: 영감을 주는 밝고 깨끗한 배경 또는 차분한 그라데이션을 활용합니다.
-- **폰트**: 가독성이 높은 'Noto Sans KR' 또는 'Nanum Myeongjo'를 활용하여 명언의 무게감을 전달합니다.
-- **인터랙션**: 부드러운 페이드인 효과를 통해 새로운 명언이 나타날 때 시각적 즐거움을 줍니다.
+## **Core Features**
+1. **Dynamic Quote Display:** Shows motivational quotes with an emphasis on Korean typography.
+2. **Interactive Inspiration:** A button to fetch and display new quotes dynamically.
+3. **Responsive Design:** Optimized for both desktop and mobile viewing.
+4. **Modern UI/UX:** Uses glassmorphism effects, smooth transitions, and a perceptually uniform color palette.
+5. **Partnership Inquiry Form (New):** Allows users to send partnership inquiries directly through a form powered by Formspree.
 
-# Current Implementation Steps
-1. **기존 사주 코드 제거**: 사주 관련 HTML, CSS, JS 로직을 모두 삭제했습니다.
-2. **명언 데이터 구축**: 성공, 도전, 끈기 등 다양한 카테고리의 동기부여 명언 리스트를 작성했습니다.
-3. **UI 구현**: 중앙 집중형 레이아웃으로 명언이 한눈에 들어오도록 설계했습니다.
-4. **Git 배포**: 새로운 동기부여 사이트를 GitHub 저장소에 업데이트했습니다.
+## **Technical Implementation**
+- **HTML5:** Semantic structure with custom web components (planned).
+- **CSS3:** Modern features like CSS Variables, Flexbox, and animations.
+- **JavaScript (ES Modules):** Clean, modular logic for quote generation and UI interactions.
+- **Formspree:** Backend-less form handling for partnership inquiries.
+
+## **Current Task: Partnership Inquiry Form**
+**Goal:** Implement a visually appealing and functional partnership inquiry form.
+
+### **Steps:**
+1. **HTML Structure:** Add a new `<section>` for the contact form in `index.html`. Include fields for Name, Email, Subject, and Message.
+2. **Styling:** Update `style.css` to style the form consistently with the "Daily Motivation" theme. Use cards, soft shadows, and clear typography.
+3. **Formspree Integration:** Set the form's `action` to `https://formspree.io/f/xojnokkp` and `method` to `POST`.
+4. **Validation & UX:** Add simple client-side validation and ensure the form is responsive.
+5. **Success Handling:** Configure Formspree to handle the submission and provide feedback.
+
+## **Deployment Phase**
+**Goal:** Deploy the Daily Motivation application to Cloudflare Pages for public access.
+
+### **Status:**
+- **Primary URL:** [https://product-builder-lecture-5li.pages.dev](https://product-builder-lecture-5li.pages.dev)
+- **Deployment Method:** Integrated with Cloudflare Pages (Automatic deployment via Git push).
+
+### **Notes:**
+- The project was briefly configured for Firebase Hosting but has been reverted to Cloudflare Pages to maintain consistency with the existing environment.
+- Any changes committed and pushed to the repository will be automatically deployed to the Cloudflare Pages URL.
+
+
+---
+*Last updated: 2026-03-03*

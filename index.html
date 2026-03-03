@@ -25,6 +25,39 @@
             </div>
         </section>
 
+        <section class="form-container">
+            <div class="form-card">
+                <h2>제휴 및 협업 문의</h2>
+                <p class="form-desc">함께 성장해나갈 파트너를 기다립니다. 아래 양식을 작성해 주세요.</p>
+                
+                <form action="https://formspree.io/f/xojnokkp" method="POST" id="partnership-form">
+                    <div class="form-group">
+                        <label for="name">성함/기업명</label>
+                        <input type="text" id="name" name="name" placeholder="성함 또는 기업명을 입력해주세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일 주소</label>
+                        <input type="email" id="email" name="_replyto" placeholder="연락받으실 이메일을 입력해주세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">문의 주제</label>
+                        <select id="subject" name="subject" required>
+                            <option value="" disabled selected>주제를 선택해주세요</option>
+                            <option value="content_partnership">콘텐츠 제휴</option>
+                            <option value="ad_inquiry">광고 문의</option>
+                            <option value="tech_collaboration">기술 협업</option>
+                            <option value="others">기타</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">문의 내용</label>
+                        <textarea id="message" name="message" rows="5" placeholder="상세한 문의 내용을 적어주세요" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">문의하기</button>
+                </form>
+            </div>
+        </section>
+
         <footer>
             <p>&copy; 2026 Daily Motivation. All rights reserved.</p>
         </footer>
